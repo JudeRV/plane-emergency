@@ -1,0 +1,1 @@
+C:\Users\jps6302\plane-emergency\plane-emergency\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\63s4yg46\obj\arm64-v8a
