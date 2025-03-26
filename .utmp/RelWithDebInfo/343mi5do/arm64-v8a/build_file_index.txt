@@ -1,0 +1,2 @@
+C:\Users\jrv4914\PlaneEmergency\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\jrv4914\PlaneEmergency\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
