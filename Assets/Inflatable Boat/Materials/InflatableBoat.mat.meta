@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ebe64e09355c4f94c88fed45897014c7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 299350
+  packageName: 3D Boat - Inflatable boat
+  packageVersion: 1.0
+  assetPath: Assets/Inflatable Boat/Materials/InflatableBoat.mat
+  uploadId: 700372
