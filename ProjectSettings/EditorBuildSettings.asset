@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
   - enabled: 1
-    path: Assets/Scenes/mask.unity
+    path: Assets/Scenes/Mask.unity
     guid: 1640b38b0bdb44d428c218203c4ad133
   - enabled: 1
     path: Assets/Scenes/lifejacket.unity
@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Door.unity
     guid: ee0e290d5822cde4fbf684d7f18d93ba
   - enabled: 1
-    path: Assets/Scenes/raft.unity
+    path: Assets/Scenes/Raft.unity
     guid: c590670cb27e1ae4293d21a78fd1c768
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}

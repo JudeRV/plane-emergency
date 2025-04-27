@@ -4,8 +4,21 @@ using UnityEngine;
 public class NPCAnimationController : MonoBehaviour
 {
     public Animator animator;
+    public AudioClip[] audioClips;
+
+    private AudioSource audioSource;
+    private int currentClipIndex = 0;
 
     private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioClips.Length > 0)
+        {
+            audioSource.clip = audioClips[currentClipIndex];
+        }
+    }
+
+    public void StartAnimation()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
@@ -18,7 +31,7 @@ public class NPCAnimationController : MonoBehaviour
         // Idle
         animator.SetBool("isWalking", false);
         animator.SetBool("isTalking", false);
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
 
         // Walk
         animator.SetBool("isWalking", true);
@@ -30,7 +43,17 @@ public class NPCAnimationController : MonoBehaviour
 
         // Talk
         animator.SetBool("isTalking", true);
-        yield return new WaitForSeconds(22f);
+        if (audioSource != null && audioClips.Length > 0)
+        {
+            // Play the first two clips (intro & refreshments)
+            yield return StartCoroutine(PlayAndAdvanceClip());
+            yield return StartCoroutine(PlayAndAdvanceClip());
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource or AudioClips not set.");
+            yield return new WaitForSeconds(5f);
+        }        
 
         // Stop Talking, Walk again
         animator.SetBool("isTalking", false);
@@ -39,6 +62,25 @@ public class NPCAnimationController : MonoBehaviour
 
         // Stop
         animator.SetBool("isWalking", false);
+    }
+
+    private IEnumerator PlayAndAdvanceClip()
+    {
+        if (audioSource != null && audioClips.Length > 0)
+        {
+            // Play the current clip
+            audioSource.Play();
+            yield return new WaitForSeconds(audioClips[currentClipIndex].length);
+
+            // Advance to the next clip
+            currentClipIndex = (currentClipIndex + 1) % audioClips.Length;
+            audioSource.clip = audioClips[currentClipIndex];
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource or AudioClips not set.");
+            yield return null;
+        }
     }
 }
 

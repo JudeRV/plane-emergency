@@ -2,6 +2,17 @@ using UnityEngine;
 
 public class MenuButtonBehavior : MonoBehaviour
 {
+    public void OnHandContactEnter()
+    {
+        // Change the color of the button to indicate interaction
+        GetComponentInChildren<Renderer>().material.color = Color.red;
+    }
+    public void OnHandContactLeave()
+    {
+        // Change the color of the button to indicate interaction
+        GetComponentInChildren<Renderer>().material.color = Color.white;
+    }
+
     public void OnPlayButtonPressed()
     {
         GameObject menuPanel = GameObject.Find("3D Menu Panel");
