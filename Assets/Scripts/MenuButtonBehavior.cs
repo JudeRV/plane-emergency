@@ -19,7 +19,9 @@ public class MenuButtonBehavior : MonoBehaviour
         if (menuPanel != null)
         {
             menuPanel.SetActive(false);
-        }
+            GameObject.Find("Floating Table").SetActive(true);
+            GameObject.Find("Grabbable Cube").SetActive(true);
+        }        
         else
         {
             Debug.LogWarning("3D Menu Panel not found in the scene.");
