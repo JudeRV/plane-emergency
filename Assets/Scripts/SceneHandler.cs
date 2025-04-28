@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,17 +7,12 @@ public class SceneTimer : MonoBehaviour
     public float timeToNextScene = 60f; // 1 minute
     private float timer;
 
-    void Update()
+    public IEnumerator WaitForNextScene()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= timeToNextScene)
-        {
-            LoadNextScene();
-        }
+        yield return new WaitForSeconds(timeToNextScene);
+        LoadNextScene();
     }
-
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
         int nextIndex = currentIndex + 1;
