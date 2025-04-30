@@ -21,7 +21,7 @@ public class GrabBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (!grabDetector.GrabStartedThisFrame) // For some reason this bool is backwards??? Idk
+        if (grabDetector.GrabStartedThisFrame) // For some reason this bool is backwards??? Idk
         {
             float distance = Vector3.Distance(transform.position, GetHandPosition());
             if (distance <= grabDistance)
@@ -33,7 +33,7 @@ public class GrabBehavior : MonoBehaviour
             }
         }
 
-        if (!grabDetector.IsGrabbing && isGrabbingThis) // This bool is also backwards, Ultraleap get your **** together
+        if (grabDetector.IsGrabbing && isGrabbingThis) // This bool is also backwards, Ultraleap get your **** together
         {
             transform.position = GetHandPosition() + positionOffset;
             transform.rotation = GetHandRotation() * rotationOffset;

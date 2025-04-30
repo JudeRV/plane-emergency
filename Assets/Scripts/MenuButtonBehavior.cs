@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MenuButtonBehavior : MonoBehaviour
 {
+    public GameObject interactables;
+
     public void OnHandContactEnter()
     {
         // Change the color of the button to indicate interaction
@@ -19,8 +21,7 @@ public class MenuButtonBehavior : MonoBehaviour
         if (menuPanel != null)
         {
             menuPanel.SetActive(false);
-            GameObject.Find("Floating Table").SetActive(true);
-            GameObject.Find("Grabbable Cube").SetActive(true);
+            interactables.SetActive(true);
         }        
         else
         {
