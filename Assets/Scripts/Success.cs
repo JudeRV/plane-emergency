@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class FadeAndEndScene : MonoBehaviour
 {
-    public GameObject mask;                 
-    public Vector2 targetCenter;             // The center of the target range
-    public Vector2 targetSize = new Vector2(1f, 1f); // Size of the target range (width, height)
+    public GameObject mask;
+    public Camera mainCamera;
+    public float maskDistanceThreshold = 0.1f;
 
-    public Image fadeImage;                  
-    public float fadeSpeed = 1f;              // How fast to fade to black
+    public Image fadeImage;
+    public float fadeSpeed = 1f;
 
     private bool shouldFade = false;
     private bool fadeComplete = false;
@@ -18,9 +18,17 @@ public class FadeAndEndScene : MonoBehaviour
     {
         if (!shouldFade)
         {
-            // Check if mask is within the target area
-            Vector2 maskPos = new Vector2(mask.transform.position.x, mask.transform.position.y);
-            if (IsWithinRange(maskPos))
+            if (mask == null)
+            {
+                Debug.LogWarning("Mask GameObject is not assigned.");
+                return;
+            }
+            if (mainCamera == null)
+            {
+                Debug.LogWarning("Main Camera is not assigned.");
+                return;
+            }
+            if (Vector3.Distance(mask.transform.position, mainCamera.transform.position) < maskDistanceThreshold)
             {
                 shouldFade = true;
             }
@@ -43,18 +51,9 @@ public class FadeAndEndScene : MonoBehaviour
         }
     }
 
-    bool IsWithinRange(Vector2 pos)
-    {
-        return Mathf.Abs(pos.x - targetCenter.x) <= targetSize.x / 2f &&
-               Mathf.Abs(pos.y - targetCenter.y) <= targetSize.y / 2f;
-    }
-
     void EndScene()
-    {
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-        
+    {        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);        
     }
 }
 
