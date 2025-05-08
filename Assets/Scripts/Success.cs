@@ -1,18 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class FadeAndEndScene : MonoBehaviour
 {
     public GameObject mask;
+    public AudioSource audioSource;
     public Camera mainCamera;
     public float maskDistanceThreshold = 0.1f;
+    public float soundDelay = 0f; // Delay before starting the sound
 
     public Image fadeImage;
     public float fadeSpeed = 1f;
 
     private bool shouldFade = false;
     private bool fadeComplete = false;
+    private bool firstPass = true;
 
     void Update()
     {
@@ -28,9 +32,10 @@ public class FadeAndEndScene : MonoBehaviour
                 Debug.LogWarning("Main Camera is not assigned.");
                 return;
             }
-            if (Vector3.Distance(mask.transform.position, mainCamera.transform.position) < maskDistanceThreshold)
+            if (Vector3.Distance(mask.transform.position, mainCamera.transform.position) < maskDistanceThreshold && firstPass)
             {
-                shouldFade = true;
+                firstPass = false;
+                StartCoroutine(EndRoutine());
             }
         }
         else
@@ -49,6 +54,17 @@ public class FadeAndEndScene : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator EndRoutine()
+    {
+        yield return new WaitForSeconds(soundDelay);
+        audioSource.Play();
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        shouldFade = true;
     }
 
     void EndScene()

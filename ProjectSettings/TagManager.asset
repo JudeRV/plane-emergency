@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - LeapHand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NonHands
   - Water
   - UI
   - 

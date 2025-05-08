@@ -4,6 +4,13 @@ public class MenuButtonBehavior : MonoBehaviour
 {
     public GameObject interactables;
 
+    private void Start()
+    {
+        // Set the button to be inactive at the start
+        interactables.SetActive(false);
+    }
+
+
     public void OnHandContactEnter()
     {
         // Change the color of the button to indicate interaction
