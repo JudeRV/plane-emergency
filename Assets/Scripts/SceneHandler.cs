@@ -7,7 +7,7 @@ public class SceneTimer : MonoBehaviour
 {
     public float secondsToNextScene = 120f;
 
-    public Image fadeImage;
+    public Renderer fadeImage;
     public float fadeDuration = 2f;
 
     public void StartTimerToNextScene()
@@ -26,17 +26,19 @@ public class SceneTimer : MonoBehaviour
     private IEnumerator FadeRoutine()
     {
         float elapsedTime = 0f;
-        Color startColor = fadeImage.color;
+        Color startColor = new Color(0, 0, 0, 0);
         Color endColor = new Color(0, 0, 0, 1); // Black with full opacity
 
         while (elapsedTime < fadeDuration)
         {
-            fadeImage.color = Color.Lerp(startColor, endColor, elapsedTime / fadeDuration);
+            Color newColor = Color.Lerp(startColor, endColor, elapsedTime / fadeDuration);
+            fadeImage.material.SetColor("_Color", newColor);
+            Debug.Log(fadeImage.material.GetColor("_Color"));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        fadeImage.color = endColor; // Ensure fully black
+        fadeImage.material.SetColor("_Color", endColor); // Ensure fully black
     }
 
     public void LoadNextScene()
